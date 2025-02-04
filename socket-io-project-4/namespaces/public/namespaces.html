@@ -55,8 +55,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io("http://localhost:8001");
+        const adminSocket = io("http://localhost:8001/admin");
         socket.on("connect", () => {
-            //
+            console.log("Main as successfully connected");
         })
         socket.on("messageFromServer", (dataFromServer) => {
             console.log(dataFromServer);
@@ -72,6 +73,15 @@
 
             document.querySelector("#user-message").value = "";
             return false;
+        })
+        adminSocket.on("connect", () => {
+            console.log("Admin as successfully connected");
+        })
+        adminSocket.on("MessageFromAdmin",(message)=>{
+            console.log(message);
+        })
+        adminSocket.on("userJoinedMainNS",(data)=>{
+            console.log("this is userJoinedMainNS:",data);
         })
 
 
