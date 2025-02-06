@@ -59,6 +59,10 @@
         socket.on("connect", () => {
             console.log("Main as successfully connected");
         })
+        socket.on("roomMessage",(data) => {
+            console.log(data);
+            
+        })
         socket.on("messageFromServer", (dataFromServer) => {
             console.log(dataFromServer);
         })

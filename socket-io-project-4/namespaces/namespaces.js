@@ -12,6 +12,12 @@ const io = socket(expressServer);
 
 io.on('connection', (socket) => {
     io.of("/admin").emit("userJoinedMainNS","MainNS");
+
+    socket.join("chat");
+    socket.join("adminChat");
+    io.to("chat").to("adminChat").emit("roomMessage",{data:"This is a message from room"})
+
+
     // io.of("/").on('connection', (socket) => {
     console.log("Client connected: " + socket.id);
     // in ws we use "sesd" method to connect and in socket.io we use "emit" method to connect
