@@ -14,7 +14,10 @@ const socket = io("http://localhost:9000");
 
 // socket will be put into this array, in the index of their ns.id
 const nameSpaceSockets = [];
-
+const listeners = {
+    "nsChange": [],
+    "message": []
+}
 
  
 socket.on("connect",()=>{
@@ -38,14 +41,21 @@ socket.on("nsList",(nsData)=>{
         // initialize thisNs as its index in nameSpaceSocket
         // if the connection is new then this will be null
         // if the connection has already been established then it will reconnect and remain on its spot
-        let thisNs = nameSpaceSockets[ns.id];
+        // let thisNs = nameSpaceSockets[ns.id];
 
-        //join this namespace with with io()
-        thisNs = io(`http://localhost:9000${ns.endpoint}`);
-        nameSpaceSockets[ns.id] = thisNs;
-        thisNs.on("nsChange", (data) => {
-            console.log("Namespace changed", data);
-        }); 
+        if(!nameSpaceSockets[ns.id])
+        {
+            // there is no socket at this nsId. So make a new connection
+            //join this namespace with with io()
+            io(`http://localhost:9000${ns.endpoint}`); 
+        }
+
+        
+        
+        // nameSpaceSockets[ns.id] = thisNs;
+        // thisNs.on("nsChange", (data) => {
+        //     console.log("Namespace changed", data);
+        // }); 
     })
     Array.from(document.getElementsByClassName("namespace")).forEach(element=>{
         console.log(element);
