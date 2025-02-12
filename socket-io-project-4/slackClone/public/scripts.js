@@ -35,7 +35,6 @@ socket.on("nsList",(nsData)=>{
     const namespacesDiv = document.querySelector(".namespaces");
     namespacesDiv.innerHTML = "";
     nsData.forEach(ns=>{
-        
         //update the HTML with each ns
         namespacesDiv.innerHTML += ` <div class="namespace" ns="${ns.endpoint}"><img src="${ns.image}"></div>`
 
