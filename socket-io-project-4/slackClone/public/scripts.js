@@ -48,10 +48,7 @@ socket.on("nsList",(nsData)=>{
             // there is no socket at this nsId. So make a new connection
             //join this namespace with with io()
             io(`http://localhost:9000${ns.endpoint}`); 
-        }
-
-        
-        
+        }        
         // nameSpaceSockets[ns.id] = thisNs;
         // thisNs.on("nsChange", (data) => {
         //     console.log("Namespace changed", data);
