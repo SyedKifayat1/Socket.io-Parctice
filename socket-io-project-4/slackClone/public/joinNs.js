@@ -13,5 +13,6 @@ const joinNs = (element,nsData) => {
         roomList.innerHTML += `<li><i class="fa-solid fa-lock"></i> ${room.roomTitle}</li>`
     })
 
+    
     localStorage.setItem("lastNs", nsEndpoint);
 }
